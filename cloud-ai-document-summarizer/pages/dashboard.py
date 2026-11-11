@@ -2,6 +2,7 @@
 pages/dashboard.py - Overview & Analytics Dashboard
 Displays total documents, summaries, Supabase Cloud Storage quota,
 recent documents list, quick upload widget, and academic metrics.
+Styled in modern Silver, Magenta, and Blue.
 """
 
 import streamlit as st
@@ -16,11 +17,13 @@ def render_dashboard():
         st.warning("Please sign in or create an account to access your personal cloud dashboard.")
         return
 
-    st.markdown("## 📊 Academic Research & Document Intelligence Dashboard")
-    st.markdown(
-        f"Welcome back, **{user.get('email', 'Researcher')}**! "
-        f"Manage your cloud-stored documents, examine structured summaries, and run grounded document Q&A."
-    )
+    # Banner matching React styling
+    st.markdown("""
+    <div class="project-banner">
+        <div class="banner-badge">✨ AI Document Intelligence & Cloud Storage</div>
+        <h1 class="banner-heading">Cloud-Based AI Document Summarizer</h1>
+    </div>
+    """, unsafe_allow_html=True)
     
     # Fetch documents from Supabase
     docs = get_user_documents(user["id"])
@@ -34,18 +37,31 @@ def render_dashboard():
         summaries = get_summaries_for_document(d["id"], user["id"])
         total_summaries += len(summaries)
 
-    # Top KPI Metrics Cards
-    col1, col2, col3, col4 = st.columns(4)
-    with col1:
-        st.metric(label="📄 Total Documents", value=total_docs)
-    with col2:
-        st.metric(label="🧠 Summaries Created", value=total_summaries)
-    with col3:
-        st.metric(label="📑 Total Pages Analyzed", value=total_pages)
-    with col4:
-        st.metric(label="☁️ Cloud Storage Used", value=format_file_size(total_bytes))
-
-    st.markdown("---")
+    # 4 Primary KPI Metrics Cards (Silver, Magenta & Blue custom HTML cards)
+    st.markdown(f"""
+    <div class="stat-grid">
+        <div class="stat-card">
+            <div class="stat-label">Total Documents</div>
+            <div class="stat-number">{total_docs}</div>
+            <div class="stat-subtext-magenta">✓ Table: documents</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Summaries Created</div>
+            <div class="stat-number">{total_summaries}</div>
+            <div class="stat-subtext-blue">★ 14 Structured Sections</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Pages Processed</div>
+            <div class="stat-number">{total_pages}</div>
+            <div class="stat-subtext-magenta">❖ Token-Aware Chunks</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Cloud Storage Used</div>
+            <div class="stat-number">{format_file_size(total_bytes)}</div>
+            <div class="stat-subtext-blue">☁ Bucket: documents</div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
 
     # Cloud Storage & Quick Upload Section
     c_left, c_right = st.columns([3, 2])
@@ -61,7 +77,7 @@ def render_dashboard():
                     st.write(f"**Storage Path:** `{d.get('storage_path')}`")
                     c_act1, c_act2 = st.columns(2)
                     with c_act1:
-                        if st.button("Open in Summarizer", key=f"dash_sum_{d['id']}"):
+                        if st.button("Open in Summarizer", key=f"dash_sum_{d['id']}", type="primary"):
                             st.session_state["active_doc_id"] = d["id"]
                             st.session_state["current_page"] = "Summarize"
                             st.rerun()
@@ -80,13 +96,13 @@ def render_dashboard():
         )
         if quick_file is not None:
             st.success(f"File selected: {quick_file.name} ({format_file_size(len(quick_file.getvalue()))})")
-            if st.button("Proceed to Extraction & Summarization", use_container_width=True):
+            if st.button("Proceed to Extraction & Summarization", type="primary", use_container_width=True):
                 st.session_state["pending_file"] = quick_file
                 st.session_state["current_page"] = "Summarize"
                 st.rerun()
 
         # Cloud Infrastructure Status
-        st.markdown("### 🌐 Cloud Infrastructure")
+        st.markdown("### 🌐 Cloud Status")
         supabase_connected = config.is_supabase_configured()
         st.write(f"**Supabase PostgreSQL:** {'🟢 Active & Connected' if supabase_connected else '🟡 Local Emulation Mode'}")
         st.write(f"**Supabase Storage:** {'🟢 Private Bucket `documents`' if supabase_connected else '🟡 Local Emulation'}")

@@ -118,7 +118,23 @@ with st.sidebar:
         sign_out_user()
         st.rerun()
 
-# 6. Render Active Page
+# 6. Render Top Header Bar & Active Page
+st.markdown("""
+<div class="app-header-bar">
+    <div>
+        <div style="display: flex; align-items: center; gap: 0.6rem;">
+            <h1 class="brand-title">Cloud AI Summarizer</h1>
+            <span style="background: rgba(217, 70, 239, 0.15); color: #f0abfc; border: 1px solid rgba(217, 70, 239, 0.3); padding: 0.15rem 0.5rem; border-radius: 9999px; font-size: 0.65rem; font-weight: 700;">SUPABASE</span>
+        </div>
+        <p class="brand-subtitle">AI Document Summarization & Cloud Storage</p>
+    </div>
+    <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: #cbd5e1; background: rgba(15, 23, 42, 0.9); padding: 0.4rem 0.9rem; border-radius: 9999px; border: 1px solid rgba(203, 213, 225, 0.15);">
+        <span style="width: 8px; height: 8px; border-radius: 50%; background: #d946ef; display: inline-block;"></span>
+        <span>Cloud Active</span>
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
 page = st.session_state["current_page"]
 
 if page == "Dashboard":
