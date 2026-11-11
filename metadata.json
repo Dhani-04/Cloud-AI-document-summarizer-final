@@ -1,0 +1,6 @@
+{
+  "name": "Cloud-Based AI Document Summarizer",
+  "description": "Production-ready AI document summarizer with intelligent chunking, 14-section structured summaries, Supabase cloud storage, Q&A chatbot, and complete Python/Streamlit VS Code project.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

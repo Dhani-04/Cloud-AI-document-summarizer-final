@@ -1,0 +1,104 @@
+/* Silver, Magenta & Blue UI Styles for Cloud-Based AI Document Summarizer */
+:root {
+    --primary-magenta: #d946ef;
+    --primary-blue: #2563eb;
+    --silver-border: #334155;
+    --bg-dark: #090d16;
+    --card-bg: #0f172a;
+    --text-silver: #f1f5f9;
+    --text-muted: #94a3b8;
+}
+
+/* Page container */
+.main .block-container {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    max-width: 1200px;
+}
+
+/* Stat Cards */
+.stat-card {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(9, 13, 22, 0.95) 100%);
+    border: 1px solid rgba(203, 213, 225, 0.15);
+    border-radius: 14px;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    border-color: #d946ef;
+}
+
+.stat-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #94a3b8;
+    margin-bottom: 0.35rem;
+}
+
+.stat-value {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #f8fafc;
+    letter-spacing: -0.02em;
+}
+
+/* Summary Section Containers */
+.summary-section-box {
+    background-color: #0f172a;
+    border: 1px solid rgba(203, 213, 225, 0.12);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #e879f9;
+    border-bottom: 1px solid rgba(203, 213, 225, 0.1);
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.85rem;
+}
+
+/* Badge tags */
+.badge-tag {
+    display: inline-block;
+    background: rgba(217, 70, 239, 0.15);
+    color: #f0abfc;
+    border: 1px solid rgba(217, 70, 239, 0.3);
+    border-radius: 9999px;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-right: 0.4rem;
+    margin-bottom: 0.4rem;
+}
+
+/* Chat bubble styling */
+.chat-bubble-user {
+    background: linear-gradient(135deg, #c026d3 0%, #2563eb 100%);
+    color: white;
+    padding: 0.85rem 1.15rem;
+    border-radius: 14px 14px 2px 14px;
+    margin-left: 20%;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 12px rgba(192, 38, 211, 0.2);
+}
+
+.chat-bubble-assistant {
+    background-color: #0f172a;
+    border: 1px solid rgba(203, 213, 225, 0.15);
+    color: #f1f5f9;
+    padding: 0.85rem 1.15rem;
+    border-radius: 14px 14px 14px 2px;
+    margin-right: 20%;
+    margin-bottom: 1rem;
+}
